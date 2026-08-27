@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aprenda as regras e o funcionamento do Truco."
+    >
+    <link rel="stylesheet" href="./src/styles/regras.css?v=1">
+    <title>Como jogar | Truco</title>
+</head>
+<body>
+    <header class="top-bar">
+        <a class="brand" href="./index.html" aria-label="Truco Petrakiio - jogar">
+            <h1 class="game-title">Truco</h1>
+        </a>
+        <nav class="main-nav" aria-label="Navegação principal">
+            <a class="nav-link" href="./index.html">Jogar</a>
+            <a class="nav-link is-active" href="./regras.html" aria-current="page">Como jogar</a>
+        </nav>
+    </header>
+
+    <main class="rules-page">
+        <header class="rules-intro">
+            <p class="eyebrow">Manual da mesa</p>
+            <h2>Aprenda a jogar Truco</h2>
+            <p>Blefe, leia seus adversários e conquiste 12 pontos antes deles.</p>
+        </header>
+
+        <section class="rules-grid" aria-label="Regras do Truco">
+            <article class="rule-card rule-card-wide">
+                <span class="step-number">01</span>
+                <div>
+                    <h3>O objetivo</h3>
+                    <p>Você joga contra a IA em uma disputa de mãos. Cada mão tem até três rodadas, e quem vencer duas delas ganha os pontos da mão.</p>
+                </div>
+            </article>
+
+            <article class="rule-card">
+                <span class="step-number">02</span>
+                <h3>As cartas</h3>
+                <p>Cada jogador recebe três cartas. A carta mais forte de cada rodada vence. A manilha é definida pela carta virada e supera as cartas comuns.</p>
+            </article>
+
+            <article class="rule-card accent-card">
+                <span class="step-number">03</span>
+                <h3>Jogue sua carta</h3>
+                <p>Na sua vez, escolha uma carta da mão. A ordem das cartas jogadas define o vencedor da rodada.</p>
+            </article>
+
+            <article class="rule-card rule-card-wide">
+                <span class="step-number">04</span>
+                <div>
+                    <h3>Peça Truco</h3>
+                    <p>A mão começa valendo 1 ponto. O pedido aumenta o valor para 3, 6, 9 ou 12. O adversário pode aceitar e continuar, correr e entregar a mão, ou aumentar a aposta.</p>
+                    <div class="value-list" aria-label="Valores da mão">
+                        <span>1 ponto</span><span>3 pontos</span><span>6 pontos</span><span>9 pontos</span><span>12 pontos</span>
+                    </div>
+                </div>
+            </article>
+
+            <article class="rule-card">
+                <span class="step-number">05</span>
+                <h3>Quem vence?</h3>
+                <p>Vence a mão quem ganhar duas rodadas. Se houver empate, as regras da rodada anterior decidem o resultado.</p>
+            </article>
+
+            <article class="rule-card finish-card">
+                <span class="step-number">06</span>
+                <h3>Fim do jogo</h3>
+                <p>A partida termina quando você ou a IA alcança 12 pontos.</p>
+                <a class="play-link" href="./index.html">Ir para a mesa <span aria-hidden="true">→</span></a>
+            </article>
+        </section>
+    </main>
+</body>
+</html>

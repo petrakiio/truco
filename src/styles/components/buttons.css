@@ -1,0 +1,166 @@
+#btn_start,
+#BtnTruco {
+  border: none;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: var(--font-display);
+  letter-spacing: 0;
+  line-height: 1;
+  min-height: 48px;
+  position: relative;
+  overflow: hidden;
+  z-index: 20;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+#btn_start:focus-visible,
+#BtnTruco:focus-visible,
+.truco-response-button:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+#btn_start::before,
+#BtnTruco::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.24), transparent);
+  transform: skewX(-15deg);
+  transition: left 0.4s ease;
+}
+
+#btn_start:hover::before,
+#BtnTruco:hover::before {
+  left: 125%;
+}
+
+#btn_start {
+  min-width: 188px;
+  padding: 14px 52px;
+  font-size: 22px;
+  background: linear-gradient(135deg, var(--btn-start-from) 0%, var(--btn-start-to) 100%);
+  box-shadow:
+    0 4px 18px rgba(4, 42, 27, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.18) inset,
+    0 -2px 0 rgba(0, 0, 0, 0.25) inset;
+  animation: fadeInScale 0.5s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+#btn_start:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.1);
+  box-shadow:
+    0 8px 28px rgba(4, 42, 27, 0.75),
+    0 1px 0 rgba(255, 255, 255, 0.18) inset;
+}
+
+#btn_start:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow:
+    0 2px 10px rgba(26, 111, 196, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.12) inset;
+}
+
+#btn_start:disabled,
+#BtnTruco:disabled {
+  cursor: not-allowed;
+  filter: grayscale(0.6) brightness(0.7);
+  animation: none;
+  box-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.35),
+    0 1px 0 rgba(255, 255, 255, 0.1) inset;
+}
+
+#BtnTruco {
+  min-width: 172px;
+  padding: 12px 40px;
+  font-size: 20px;
+  background: linear-gradient(135deg, var(--btn-truco-from) 0%, var(--btn-truco-to) 100%);
+  box-shadow:
+    0 4px 20px rgba(82, 15, 13, 0.58),
+    0 0 0 2px rgba(251, 148, 133, 0.28),
+    0 1px 0 rgba(255, 255, 255, 0.2) inset;
+  animation: trucoButtonPulse 2.4s ease-in-out infinite;
+}
+
+#BtnTruco:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.15);
+  box-shadow:
+    0 10px 32px rgba(82, 15, 13, 0.75),
+    0 0 0 3px rgba(251, 148, 133, 0.42);
+  animation-play-state: paused;
+}
+
+#BtnTruco:active {
+  transform: translateY(1px) scale(0.96);
+  box-shadow:
+    0 2px 12px rgba(232, 65, 24, 0.4),
+    0 0 0 2px rgba(255, 100, 60, 0.25);
+}
+
+#truco-response {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.truco-response-button {
+  min-width: 118px;
+  min-height: 46px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: #ffffff;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  transition: background-color 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.truco-response-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+.truco-response-button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.truco-response-button.accept {
+  background: #11613d;
+  border-color: #4fc484;
+  box-shadow: 0 3px 0 #083724;
+}
+
+.truco-response-button.accept:hover {
+  background: #177a4d;
+  border-color: #78e6a9;
+}
+
+.truco-response-button.run {
+  background: #872f31;
+  border-color: #e67b75;
+  box-shadow: 0 3px 0 #4c1719;
+}
+
+.truco-response-button.run:hover {
+  background: #a53d3d;
+  border-color: #ffaaa1;
+}

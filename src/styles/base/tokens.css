@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --felt-deep: #06291e;
+  --felt-mid: #0a4934;
+  --felt-light: #116445;
+  --wood-dark: #241208;
+  --wood-mid: #583016;
+  --wood-light: #9b6131;
+  --amber: #f5a623;
+  --amber-glow: rgba(245, 166, 35, 0.35);
+  --gold: #ffd700;
+  --gold-glow: rgba(255, 215, 0, 0.45);
+  --card-face: #f9f4e8;
+  --card-shadow: rgba(0, 0, 0, 0.55);
+  --card-red: #c0392b;
+  --card-black: #1a1a2e;
+  --glass-bg: rgba(0, 0, 0, 0.42);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --vs-red: #ff2d55;
+  --vs-glow: rgba(255, 45, 85, 0.55);
+  --btn-start-from: #14714b;
+  --btn-start-to: #0b432d;
+  --btn-truco-from: #c23b35;
+  --btn-truco-to: #76221f;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --card-w: 90px;
+  --card-h: 130px;
+  --card-radius: 10px;
+  --top-bar-h: 64px;
+}

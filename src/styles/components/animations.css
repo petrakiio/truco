@@ -1,0 +1,51 @@
+@keyframes cardDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.88) rotate(-4deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.82) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes trucoButtonPulse {
+  0% { box-shadow: 0 4px 20px rgba(232, 65, 24, 0.50), 0 0 0 2px rgba(255, 100, 60, 0.30); }
+  50% { box-shadow: 0 6px 28px rgba(232, 65, 24, 0.70), 0 0 0 6px rgba(255, 100, 60, 0); }
+  100% { box-shadow: 0 4px 20px rgba(232, 65, 24, 0.50), 0 0 0 2px rgba(255, 100, 60, 0.30); }
+}
+
+@keyframes manilhaShimmer {
+  0% { filter: brightness(1) drop-shadow(0 0 6px var(--gold-glow)); }
+  50% { filter: brightness(1.1) drop-shadow(0 0 16px var(--gold-glow)); }
+  100% { filter: brightness(1) drop-shadow(0 0 6px var(--gold-glow)); }
+}
+
+@keyframes winFlash {
+  0%, 100% { background-color: transparent; }
+  40% { background-color: rgba(245, 166, 35, 0.12); }
+}
+
+body.round-win {
+  animation: winFlash 0.6s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

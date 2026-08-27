@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/styles/cards.css?v=9">
+    <title>Truco</title>
+</head>
+<body>
+
+    <!-- Header fixo -->
+    <header class="top-bar">
+        <a class="brand" href="./index.html" aria-label="Truco Petrakiio - jogar">
+            <h1 class="game-title">Truco</h1>
+        </a>
+
+        <nav class="main-nav" aria-label="Navegação principal">
+            <a class="nav-link is-active" href="./index.html" aria-current="page">Jogar</a>
+            <a class="nav-link" href="./regras.html">Como jogar</a>
+        </nav>
+
+        <div id="scoreboard"></div>
+        <div id="round-info"></div>
+    </header>
+
+    <!-- Cartas da IA -->
+    <section class="ia-cards"></section>
+
+    <!-- Arena central -->
+    <main id="game-container">
+
+        <div id="arena"></div>
+
+        <h2 id="result"></h2>
+
+        <button id="btn_start">
+            Começar Jogo
+        </button>
+
+    </main>
+
+    <!-- Área do jogador -->
+    <section class="player-area">
+        <div class="player-cards"></div>
+    </section>
+
+    <script src="./src/script/view/renderGame.js?v=7" type="module"></script>
+
+</body>
+</html>

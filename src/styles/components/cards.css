@@ -1,0 +1,216 @@
+.ia-cards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+.ia-cards .back-card {
+  margin-left: -18px;
+  transition: transform 0.3s ease;
+}
+
+.ia-cards .back-card:first-child {
+  margin-left: 0;
+}
+
+.ia-cards .back-card:nth-child(1) { transform: rotate(-6deg) translateY(4px); }
+.ia-cards .back-card:nth-child(2) { transform: rotate(-2deg) translateY(0); z-index: 2; }
+.ia-cards .back-card:nth-child(3) { transform: rotate(4deg) translateY(4px); }
+
+.player-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 10;
+}
+
+.player-cards {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 20px 0 8px;
+  position: relative;
+  z-index: 10;
+}
+
+.player-cards .letters-div,
+.player-cards .manilha {
+  margin-left: -16px;
+  cursor: pointer;
+}
+
+.player-cards .letters-div:first-child,
+.player-cards .manilha:first-child {
+  margin-left: 0;
+}
+
+.player-cards .letters-div:hover,
+.player-cards .manilha:hover {
+  transform: translateY(-28px) scale(1.08);
+  box-shadow:
+    0 20px 48px rgba(0, 0, 0, 0.7),
+    0 0 24px rgba(245, 166, 35, 0.22);
+  z-index: 50;
+}
+
+.player-cards .letters-div:active,
+.player-cards .manilha:active {
+  transform: translateY(-20px) scale(1.04);
+}
+
+.letters-div,
+.manilha,
+.played-card {
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: var(--card-radius);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 28px;
+  letter-spacing: 0.02em;
+  user-select: none;
+  transition:
+    transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.22s ease;
+}
+
+.letters-div {
+  background: linear-gradient(145deg, #ffffff 0%, var(--card-face) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow:
+    0 4px 16px var(--card-shadow),
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 -1px 0 rgba(0, 0, 0, 0.08) inset;
+  color: var(--card-black);
+}
+
+.letters-div::before,
+.letters-div::after,
+.manilha::before,
+.manilha::after,
+.played-card::before,
+.played-card::after {
+  content: attr(data-value);
+  position: absolute;
+  font-family: var(--font-display);
+  line-height: 1;
+  color: inherit;
+}
+
+.letters-div::before,
+.manilha::before,
+.played-card::before {
+  top: 6px;
+  left: 8px;
+  font-size: 12px;
+}
+
+.letters-div::after,
+.manilha::after,
+.played-card::after {
+  right: 8px;
+  bottom: 6px;
+  font-size: 12px;
+  transform: rotate(180deg);
+}
+
+.letters-div[data-suit="♥"],
+.letters-div[data-suit="♦"],
+.played-card[data-suit="♥"],
+.played-card[data-suit="♦"] {
+  color: var(--card-red);
+}
+
+.letters-div[data-suit="♣"],
+.letters-div[data-suit="♠"],
+.played-card[data-suit="♣"],
+.played-card[data-suit="♠"] {
+  color: var(--card-black);
+}
+
+.manilha {
+  background: linear-gradient(145deg, #fffbe8 0%, #fff0b3 40%, #ffe066 100%);
+  border: 2px solid var(--gold);
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.55),
+    0 0 16px var(--gold-glow),
+    0 0 40px rgba(255, 215, 0, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.85) inset;
+  color: #7a4f00;
+  animation: manilhaShimmer 2.8s ease-in-out infinite;
+}
+
+.manilha::before,
+.manilha::after {
+  color: #b8860b;
+}
+
+.back-card {
+  width: var(--card-w);
+  height: var(--card-h);
+  border-radius: var(--card-radius);
+  background: radial-gradient(circle at center, #1a3a6b 0%, #0d2245 60%, #071529 100%);
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.65),
+    0 1px 0 rgba(255, 255, 255, 0.08) inset;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.back-card::before {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  border-radius: calc(var(--card-radius) - 2px);
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.04) 0 2px, transparent 2px 8px),
+    repeating-linear-gradient(-45deg, rgba(255, 255, 255, 0.04) 0 2px, transparent 2px 8px);
+}
+
+.back-card::after {
+  content: '♠';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: rgba(255, 255, 255, 0.18);
+  pointer-events: none;
+}
+
+.played-card {
+  width: calc(var(--card-w) * 1.15);
+  height: calc(var(--card-h) * 1.15);
+  background: linear-gradient(145deg, #ffffff 0%, var(--card-face) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.7),
+    0 2px 0 rgba(255, 255, 255, 0.9) inset;
+  font-size: 32px;
+  color: var(--card-black);
+  animation: cardDrop 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.played-card::before {
+  top: 7px;
+  left: 10px;
+  font-size: 13px;
+}
+
+.played-card::after {
+  right: 10px;
+  bottom: 7px;
+  font-size: 13px;
+}

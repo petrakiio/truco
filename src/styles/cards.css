@@ -1,0 +1,26 @@
+/* Importa as variáveis globais do projeto
+   (cores, fontes, espaçamentos, tamanhos, etc.) */
+@import url('./base/tokens.css?v=9');
+
+/* Importa os estilos gerais da página
+   (body, html, layout principal, etc.) */
+@import url('./base/page.css?v=9');
+
+/* Importa os estilos do cabeçalho (header) */
+@import url('./components/header.css?v=9');
+
+/* Importa os estilos dos cards */
+@import url('./components/cards.css?v=9');
+
+/* Importa os estilos da tabela/interface do jogo */
+@import url('./components/game-table.css?v=9');
+
+/* Importa os estilos dos botões */
+@import url('./components/buttons.css?v=9');
+
+/* Importa animações e transições do projeto */
+@import url('./components/animations.css?v=9');
+
+/* Importa regras de responsividade
+   para celulares, tablets e telas menores */
+@import url('./components/responsive.css?v=9');

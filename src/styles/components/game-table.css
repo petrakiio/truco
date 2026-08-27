@@ -1,0 +1,111 @@
+#game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  position: relative;
+  z-index: 10;
+}
+
+#arena {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  min-height: 180px;
+  padding: 16px 32px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 10;
+  background: radial-gradient(ellipse 360px 200px at center, rgba(0, 0, 0, 0.18), transparent 70%);
+}
+
+#arena::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 227, 158, 0.24);
+  pointer-events: none;
+}
+
+.vs {
+  font-family: var(--font-display);
+  font-size: 36px;
+  letter-spacing: 0.1em;
+  color: var(--vs-red);
+  text-shadow:
+    0 0 12px var(--vs-glow),
+    0 0 32px rgba(255, 45, 85, 0.3),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  user-select: none;
+  line-height: 1;
+}
+
+#result {
+  max-width: min(680px, calc(100vw - 32px));
+  min-width: 200px;
+  min-height: 44px;
+  padding: 10px 28px;
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  background: rgba(3, 31, 22, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 1px 0 rgba(255, 255, 255, 0.06) inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 20;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: none;
+}
+
+.result-message {
+  flex-direction: column;
+  gap: 2px;
+}
+
+.result-title {
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.result-detail {
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+#result.is-success {
+  border-color: rgba(82, 219, 145, 0.65);
+}
+
+#result.is-success .result-title {
+  color: #75e6aa;
+}
+
+#result.is-danger {
+  border-color: rgba(241, 116, 109, 0.7);
+}
+
+#result.is-danger .result-title {
+  color: #ff9d94;
+}
+
+#result.is-warning {
+  border-color: rgba(245, 196, 90, 0.68);
+}
+
+#result.is-warning .result-title {
+  color: #ffda78;
+}

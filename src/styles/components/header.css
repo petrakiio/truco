@@ -1,0 +1,111 @@
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--top-bar-h);
+  padding: 0 24px;
+  background: rgba(5, 14, 8, 0.72);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border-bottom: 1px solid var(--glass-border);
+  box-shadow:
+    0 2px 24px rgba(0, 0, 0, 0.6),
+    0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 28px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-link {
+  padding: 8px 12px;
+  border-bottom: 2px solid transparent;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.18s ease, border-color 0.18s ease;
+}
+
+.nav-link:hover,
+.nav-link.is-active {
+  border-color: var(--amber);
+  color: var(--amber);
+}
+
+.game-title {
+  font-family: var(--font-display);
+  color: var(--amber);
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-shadow: 0 0 12px var(--amber-glow);
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.scoreboard .score-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.scoreboard .score-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.scoreboard .score-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1;
+  color: var(--amber);
+  text-shadow: 0 0 12px var(--amber-glow);
+  letter-spacing: 0.04em;
+}
+
+.score-divider {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: rgba(255, 255, 255, 0.2);
+  letter-spacing: 0.08em;
+}
+
+.round-info {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 4px 14px;
+  background: rgba(255, 255, 255, 0.04);
+}

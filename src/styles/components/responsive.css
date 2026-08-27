@@ -1,0 +1,148 @@
+@media (max-width: 900px) {
+  :root {
+    --card-w: 72px;
+    --card-h: 104px;
+    --card-radius: 8px;
+  }
+
+  .letters-div,
+  .manilha { font-size: 22px; }
+  .played-card { font-size: 26px; }
+  .vs { font-size: 28px; }
+  .ia-cards .back-card { margin-left: -14px; }
+  .player-cards .letters-div,
+  .player-cards .manilha { margin-left: -12px; }
+  #BtnTruco { min-width: 160px; font-size: 17px; padding: 11px 32px; }
+  #btn_start { min-width: 176px; font-size: 18px; padding: 12px 40px; }
+  .scoreboard .score-value { font-size: 22px; }
+}
+
+@media (max-width: 700px) {
+  .top-bar {
+    gap: 14px;
+    padding: 0 16px;
+  }
+
+  .round-info { display: none; }
+
+  #game-container {
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  #arena {
+    width: min(100%, 520px);
+    gap: clamp(12px, 5vw, 28px);
+    padding: 12px clamp(12px, 5vw, 32px);
+  }
+
+  .player-area { width: 100%; }
+}
+
+@media (max-width: 560px) {
+  :root {
+    --card-w: 58px;
+    --card-h: 84px;
+    --card-radius: 7px;
+    --top-bar-h: 56px;
+  }
+
+  body {
+    padding-bottom: 16px;
+  }
+
+  .top-bar {
+    gap: 10px;
+    padding: 0 10px;
+  }
+
+  .main-nav { gap: 0; }
+
+  .nav-link {
+    padding: 7px 8px;
+    font-size: 9px;
+  }
+
+  .game-title {
+    font-size: 22px;
+  }
+
+  .scoreboard {
+    gap: 10px;
+  }
+
+  .scoreboard .score-value { font-size: 18px; }
+  .scoreboard .score-label { font-size: 8px; }
+  .round-info { display: none; }
+  .score-divider { font-size: 16px; }
+  .letters-div,
+  .manilha { font-size: 18px; }
+  .letters-div::before,
+  .letters-div::after,
+  .manilha::before,
+  .manilha::after { font-size: 9px; }
+
+  .played-card {
+    width: calc(var(--card-w) * 1.12);
+    height: calc(var(--card-h) * 1.12);
+    font-size: 20px;
+  }
+
+  .vs { font-size: 22px; }
+  .ia-cards { margin-top: 12px; }
+  .ia-cards .back-card { margin-left: -12px; }
+  .ia-cards .back-card:nth-child(1) { transform: rotate(-5deg) translateY(3px); }
+  .ia-cards .back-card:nth-child(2) { transform: rotate(-1deg) translateY(0); }
+  .ia-cards .back-card:nth-child(3) { transform: rotate(4deg) translateY(3px); }
+  .player-cards { padding: 12px 0 4px; }
+  .player-cards .letters-div,
+  .player-cards .manilha { margin-left: -10px; }
+  .player-cards .letters-div:hover,
+  .player-cards .manilha:hover { transform: translateY(-20px) scale(1.06); }
+
+  #arena {
+    min-height: 140px;
+    gap: 16px;
+    padding: 10px 16px;
+  }
+
+  #result {
+    max-width: calc(100vw - 32px);
+    padding: 8px 18px;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+
+  #btn_start,
+  #BtnTruco {
+    min-height: 48px;
+    min-width: 154px;
+    font-size: 16px;
+    padding: 13px 22px;
+  }
+
+  #truco-response {
+    max-width: calc(100vw - 24px);
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 380px) {
+  .top-bar { gap: 6px; }
+
+  .main-nav { margin-left: auto; }
+
+  .nav-link {
+    padding-right: 5px;
+    padding-left: 5px;
+    font-size: 8px;
+  }
+
+  .scoreboard { gap: 5px; }
+  .scoreboard .score-label { font-size: 7px; }
+  .scoreboard .score-value { font-size: 16px; }
+  .score-divider { font-size: 14px; }
+
+  #arena { gap: 8px; }
+  #result { min-width: 0; width: 100%; }
+}
