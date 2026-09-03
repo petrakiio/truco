@@ -62,11 +62,12 @@ export class Ia {
 
     if (phase === 'truco') return hand.averageScore >= 6 || hand.manilhas >= 1;
     if (phase === 'six') return hand.averageScore >= 8 || hand.manilhas >= 1;
-    if (phase === 'nine') return hand.averageScore >= 10 || hand.manilhas >= 2;
 
-    // A IA recebe uma única manilha pela mecânica do roubo. Exigir duas aqui
-    // fazia ela recusar Doze sempre, entregando os 9 pontos imediatamente.
-    return hand.manilhas >= 1 && (hand.averageScore >= 7 || hand.strongestCard >= 14);
+    // A IA recebe apenas uma manilha por mão. Exigir uma média muito alta ou
+    // duas manilhas nestas fases fazia ela correr quase sempre ao ouvir Nove
+    // ou Doze, entregando automaticamente os pontos já valendo na mão.
+    if (phase === 'nine') return hand.manilhas >= 1 || hand.averageScore >= 8;
+    return hand.manilhas >= 1 || hand.strongestCard >= 10 || hand.averageScore >= 7;
   }
 
   // Produz o formato consumido pela view: uma ação de "truco" ou "play-card"

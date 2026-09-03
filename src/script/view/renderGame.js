@@ -1,6 +1,6 @@
-import { dealCards } from "../controller/destributionGame.js?v=7";
-import { playcard, checkHandWinner, addPoint, checkGameWinner, Truco, acceptTruco, refuseTruco, canRequestTruco, getTrucoButtonLabel, getHandPoints } from "../controller/manageGame.js?v=7";
-import { Ia } from "../model/ia.js?v=7";
+import { dealCards } from "../controller/destributionGame.js?v=8";
+import { playcard, checkHandWinner, addPoint, checkGameWinner, Truco, acceptTruco, refuseTruco, canRequestTruco, getTrucoButtonLabel, getHandPoints } from "../controller/manageGame.js?v=8";
+import { Ia } from "../model/ia.js?v=8";
 
 let playerDeck = [];
 let ia;
@@ -8,7 +8,9 @@ let pendingIaMove = null;
 let playerDeckSignature = '';
 let gameActive = false;
 let handEnding = false;
+let iaThinking = false;
 let arenaClearTimeout = null;
+const IA_THINKING_DELAY = 1000;
 const shackles = ['7♦️', '7❤️', '4♣️', 'A♠️'];
 
 // elementos fixos 
@@ -124,16 +126,20 @@ function createTrucoButton() {
     btnTruco.id = 'BtnTruco';
     btnTruco.type = 'button';
     btnTruco.textContent = `Pedir ${getTrucoButtonLabel()}`;
-    btnTruco.disabled = !gameActive || handEnding || !canRequestTruco();
+    btnTruco.disabled = !gameActive || handEnding || iaThinking || !canRequestTruco();
     btnTruco.addEventListener('click', () => {
         if (!gameActive || handEnding || !canRequestTruco()) return;
         const phaseLabel = getTrucoButtonLabel();
         btnTruco.disabled = true;
         setPlayerCardsDisabled(true);
         Truco('player');
-        setGameMessage(`Você pediu ${phaseLabel}`, 'A IA está avaliando a mão.', 'warning');
+        iaThinking = true;
+        setGameMessage('IA está pensando…', `Avaliando seu pedido de ${phaseLabel}.`, 'warning');
 
-        window.setTimeout(() => respondToPlayerTruco(), 650);
+        window.setTimeout(() => {
+            iaThinking = false;
+            respondToPlayerTruco();
+        }, IA_THINKING_DELAY);
     });
 
     return btnTruco;
@@ -148,7 +154,7 @@ function updateTrucoButton() {
     if (!button) return;
 
     button.textContent = `Pedir ${getTrucoButtonLabel()}`;
-    button.disabled = !gameActive || handEnding || !canRequestTruco();
+    button.disabled = !gameActive || handEnding || iaThinking || !canRequestTruco();
 }
 
 function setPlayerCardsDisabled(disabled) {
@@ -161,6 +167,7 @@ function setPlayerCardsDisabled(disabled) {
 function finishTrucoRefusal(winner) {
     clearTrucoResponse();
     pendingIaMove = null;
+    iaThinking = false;
     handEnding = true;
     setPlayerCardsDisabled(true);
     const iaWon = winner === 'ia';
@@ -250,6 +257,7 @@ function createLayout() {
     playerDeckSignature = JSON.stringify(playerDeck);
     gameActive = true;
     handEnding = false;
+    iaThinking = false;
     pendingIaMove = null;
     clearTrucoResponse();
 
@@ -299,30 +307,42 @@ function updateLayout() {
 
 // lógica de clique numa carta 
 function handleCardClick(index) {
-    if (!gameActive || handEnding || pendingIaMove) return;
+    if (!gameActive || handEnding || pendingIaMove || iaThinking) return;
 
     syncPlayerDeckFromStorage();
     const playerCard = playerDeck[index];
     if (!playerCard) return;
 
-    const cardScores = JSON.parse(localStorage.getItem('scoresCards'));
     const statusGame = JSON.parse(localStorage.getItem('statusGame'));
     if (statusGame.trucoPending) return;
-    const iaDecision = decideIaTurn(cardScores, statusGame);
-    const iaCalledTruco = iaDecision.type === 'truco';
+    iaThinking = true;
+    setPlayerCardsDisabled(true);
+    updateTrucoButton();
+    setGameMessage('IA está pensando…', 'Escolhendo a melhor jogada.', 'neutral');
 
-    if (iaCalledTruco) {
-        const phaseLabel = getTrucoButtonLabel();
-        pendingIaMove = { playerCard, index, iaCard: iaDecision.card };
-        setPlayerCardsDisabled(true);
-        Truco('ia')
-            .catch((error) => console.warn(error.message))
-            .finally(() => showIaTrucoResponse(phaseLabel));
-        updateTrucoButton();
-        return;
-    }
+    window.setTimeout(() => {
+        if (!gameActive || handEnding) {
+            iaThinking = false;
+            return;
+        }
 
-    playRound(playerCard, index, iaDecision.card);
+        const currentStatus = JSON.parse(localStorage.getItem('statusGame')) || {};
+        const currentScores = JSON.parse(localStorage.getItem('scoresCards')) || {};
+        const iaDecision = decideIaTurn(currentScores, currentStatus);
+        iaThinking = false;
+
+        if (iaDecision.type === 'truco') {
+            const phaseLabel = getTrucoButtonLabel();
+            pendingIaMove = { playerCard, index, iaCard: iaDecision.card };
+            Truco('ia')
+                .catch((error) => console.warn(error.message))
+                .finally(() => showIaTrucoResponse(phaseLabel));
+            updateTrucoButton();
+            return;
+        }
+
+        playRound(playerCard, index, iaDecision.card);
+    }, IA_THINKING_DELAY);
 }
 
 function playRound(playerCard, index, iaCard, trucoContext = '') {
@@ -392,6 +412,7 @@ function endHand(handWinner) {
     if (!gameActive) return;
     gameActive = false;
     handEnding = true;
+    iaThinking = false;
     localStorage.removeItem('statusPlay');
     setPlayerCardsDisabled(true);
     addPoint(handWinner);
@@ -422,6 +443,7 @@ function endHand(handWinner) {
 // fim de jogo 
 function endGame(winner) {
     gameActive = false;
+    iaThinking = false;
     document.querySelector('.player-cards').innerHTML = '';
     document.querySelector('.ia-cards').innerHTML = '';
     const btnTruco = document.getElementById('BtnTruco');
